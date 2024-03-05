@@ -159,4 +159,19 @@ ORDER BY `Corso di Laurea` ASC
 ```
 
 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
+
+```
+SELECT DISTINCT `teachers`.`id`, `departments`.`name`, `teachers`.`name` AS "Nome Insegnante", `teachers`.`surname` AS "Cognome Insegnante"
+FROM `teachers`
+JOIN `course_teacher`
+ON `teachers`.`id` = `course_teacher`.`teacher_id`
+JOIN `courses`
+ON `course_teacher`.`course_id` = `courses`.`id`
+JOIN `degrees`
+ON `courses`.`degree_id` = `degrees`.`id`
+JOIN `departments`
+ON `departments`.`id` = `degrees`.`department_id`
+WHERE `departments`.`id` = 5;
+```
+
 7. BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
